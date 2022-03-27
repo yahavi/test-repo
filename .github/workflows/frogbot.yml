@@ -1,0 +1,40 @@
+name: "Frogbot"
+on:
+  pull_request_target:
+    types: [labeled, opened, reopened, synchronize]
+jobs:
+  scan-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.x
+
+      - name: Build Frogbot
+        run: |
+          git clone https://github.com/jfrog/frogbot.git
+          cd frogbot
+          git checkout dev
+          ./buildscripts/build.sh
+          cd ..
+
+      - run: npm i
+
+      - name: Scan Pull Request
+        env:
+          FROGBOT_JF_USER: ${{ secrets.FROGBOT_JF_USER }}
+          FROGBOT_JF_URL: ${{ secrets.FROGBOT_JF_URL }}
+          FROGBOT_JF_PASSWORD: ${{ secrets.FROGBOT_JF_PASSWORD }}
+          FROGBOT_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
+          FROGBOT_GIT_REPO: ${{ github.repository }}
+          FROGBOT_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          FROGBOT_GIT_BASE_BRANCH: $GITHUB_BASE_REF
+          FROGBOT_PR: ${{ github.event.number }}
+        run: ./frogbot/frogbot scan-pull-request
