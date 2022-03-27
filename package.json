@@ -5,7 +5,8 @@
     "start": "node helloworld"
   },
   "dependencies": {
-    "send": "^0.16.2"
+    "send": "^0.16.2",
+    "mocha": "9.2.1"
   },
   "devDependencies": {
     "debug": "^4.1.1"
