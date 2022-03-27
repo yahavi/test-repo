@@ -19,22 +19,30 @@ jobs:
 
       - name: Build Frogbot
         run: |
-          git clone https://github.com/jfrog/frogbot.git
-          cd frogbot
+          git clone https://github.com/yahavi/frogbot.git
+          cd refactor
           git checkout dev
           ./buildscripts/build.sh
           cd ..
 
-      - run: npm i
+      - name: Before scan
+        env:
+          JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
+          JF_GIT_REPO: ${{ github.repository }}
+          JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
+          JF_PR: ${{ github.event.number }}
+        run: ./frogbot/frogbot before-scan
 
+      - run: npm i
       - name: Scan Pull Request
         env:
-          FROGBOT_JF_USER: ${{ secrets.FROGBOT_JF_USER }}
-          FROGBOT_JF_URL: ${{ secrets.FROGBOT_JF_URL }}
-          FROGBOT_JF_PASSWORD: ${{ secrets.FROGBOT_JF_PASSWORD }}
-          FROGBOT_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
-          FROGBOT_GIT_REPO: ${{ github.repository }}
-          FROGBOT_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          FROGBOT_GIT_BASE_BRANCH: $GITHUB_BASE_REF
-          FROGBOT_PR: ${{ github.event.number }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
+          JF_GIT_REPO: ${{ github.repository }}
+          JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
+          JF_PR: ${{ github.event.number }}
         run: ./frogbot/frogbot scan-pull-request
