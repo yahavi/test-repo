@@ -17,10 +17,6 @@ jobs:
         with:
           go-version: 1.17.x
 
-      - name: Set ENV variables
-        run: |
-          echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
-
       - name: Build Frogbot
         run: |
           git clone https://github.com/yahavi/frogbot.git
@@ -33,7 +29,7 @@ jobs:
         env:
           JF_GIT_PROVIDER: github
           JF_GIT_OWNER: ${{ github.repository_owner }}
-          JF_GIT_REPO: $REPO_NAME
+          JF_GIT_REPO: test-repo
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
           JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
           JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
@@ -47,7 +43,7 @@ jobs:
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
           JF_GIT_PROVIDER: github
           JF_GIT_OWNER: ${{ github.repository_owner }}
-          JF_GIT_REPO: $REPO_NAME
+          JF_GIT_REPO: test-repo
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
           JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
           JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
