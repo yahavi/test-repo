@@ -28,10 +28,10 @@ jobs:
       - name: Before scan
         env:
           JF_GIT_PROVIDER: github
-          JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
+          JF_GIT_OWNER: ${{ github.repository_owner }}
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
+          JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
           JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
         run: ./frogbot/frogbot before-scan
 
@@ -42,9 +42,9 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
           JF_GIT_PROVIDER: github
-          JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
+          JF_GIT_OWNER: ${{ github.repository_owner }}
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
+          JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
           JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
         run: ./frogbot/frogbot scan-pull-request
