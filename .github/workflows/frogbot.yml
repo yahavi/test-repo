@@ -27,6 +27,7 @@ jobs:
 
       - name: Before scan
         env:
+          JF_GIT_PROVIDER: github
           JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -40,6 +41,7 @@ jobs:
           JF_USER: ${{ secrets.JF_USER }}
           JF_URL: ${{ secrets.JF_URL }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+          JF_GIT_PROVIDER: github
           JF_GIT_OWNER: $GITHUB_REPOSITORY_OWNER
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
