@@ -25,7 +25,6 @@ jobs:
           ./buildscripts/build.sh
           cd ..
 
-      - run: npm i
       - name: Scan Pull Request
         env:
           JF_INSTALL_COMMAND: "npm i"
