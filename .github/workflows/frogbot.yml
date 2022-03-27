@@ -19,8 +19,8 @@ jobs:
 
       - name: Build Frogbot
         run: |
-          git clone https://github.com/jfrog/frogbot.git
-          cd frogbot
+          git clone https://github.com/yahavi/frogbot.git
+          cd refactor
           git checkout dev
           ./buildscripts/build.sh
           cd ..
