@@ -25,19 +25,10 @@ jobs:
           ./buildscripts/build.sh
           cd ..
 
-      - name: Before scan
-        env:
-          JF_GIT_PROVIDER: github
-          JF_GIT_OWNER: ${{ github.repository_owner }}
-          JF_GIT_REPO: test-repo
-          JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
-          JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
-        run: ./frogbot/frogbot before-scan
-
       - run: npm i
       - name: Scan Pull Request
         env:
+          JF_INSTALL_COMMAND: "npm i"
           JF_USER: ${{ secrets.JF_USER }}
           JF_URL: ${{ secrets.JF_URL }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
