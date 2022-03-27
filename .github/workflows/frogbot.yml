@@ -32,7 +32,7 @@ jobs:
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
           JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
-          JF_PR: ${{ github.event.number }}
+          JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
         run: ./frogbot/frogbot before-scan
 
       - run: npm i
@@ -46,5 +46,5 @@ jobs:
           JF_GIT_REPO: ${{ github.repository }}
           JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
           JF_GIT_BASE_BRANCH: $GITHUB_BASE_REF
-          JF_PR: ${{ github.event.number }}
+          JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
         run: ./frogbot/frogbot scan-pull-request
