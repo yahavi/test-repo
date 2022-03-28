@@ -19,14 +19,15 @@ jobs:
 
       - name: Build Frogbot
         run: |
-          git clone https://github.com/jfrog/frogbot.git
+          git clone https://github.com/yahavi/frogbot.git
           cd frogbot
-          git checkout dev
+          git checkout verbose
           ./buildscripts/build.sh
           cd ..
 
       - name: Scan Pull Request
         env:
+          JFROG_CLI_LOG_LEVEL: DEBUG
           JF_INSTALL_COMMAND: "npm i"
           JF_USER: ${{ secrets.JF_USER }}
           JF_URL: ${{ secrets.JF_URL }}
