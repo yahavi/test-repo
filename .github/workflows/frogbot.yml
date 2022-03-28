@@ -24,6 +24,8 @@ jobs:
           git checkout verbose
           ./buildscripts/build.sh
           cd ..
+          pwd
+          ls
 
       - name: Scan Pull Request
         env:
