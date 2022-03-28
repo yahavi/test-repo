@@ -23,6 +23,8 @@ jobs:
           cd frogbot
           git checkout verbose
           ./buildscripts/build.sh
+          pwd
+          ls
           cd ..
           pwd
           ls
