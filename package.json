@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "send": "^0.16.2",
-    "minimatch": "3.0.4"
+    "minimist": "1.2.5",
+    "marked":"0.7.0"
   },
   "devDependencies": {
     "debug": "^4.1.1"
