@@ -23,6 +23,10 @@ jobs:
           cd frogbot
           git checkout verbose
           ./buildscripts/build.sh
+      - name: Git status
+        run: |
+          git status
+          git log --pretty=format:%s
 
       - name: Scan Pull Request
         env:
