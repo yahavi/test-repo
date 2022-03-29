@@ -21,9 +21,9 @@ jobs:
 
       - name: Build Frogbot
         run: |
-          git clone https://github.com/yahavi/frogbot.git
+          git clone https://github.com/jfrog/frogbot.git
           cd frogbot
-          git checkout verbose
+          git checkout dev
           ./buildscripts/build.sh
       - name: Git status
         run: |
