@@ -1,7 +1,7 @@
 name: "Frogbot"
 on:
   pull_request_target:
-    types: [labeled, opened, reopened, synchronize]
+    types: [labeled, opened]
 jobs:
   scan-pr:
     runs-on: ubuntu-latest
@@ -14,33 +14,10 @@ jobs:
         with:
           node-version: "16.x"
 
-      - name: Install Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17.x
-
-      - name: Build Frogbot
-        run: |
-          git clone https://github.com/jfrog/frogbot.git
-          cd frogbot
-          git checkout dev
-          ./buildscripts/build.sh
-      - name: Git status
-        run: |
-          git status
-          git log --pretty=format:%s
-
-      - name: Scan Pull Request
+      - uses: jfrog/frogbot@v1.0.0-alpha.2
         env:
-          JFROG_CLI_LOG_LEVEL: DEBUG
           JF_INSTALL_COMMAND: "npm i"
           JF_USER: ${{ secrets.JF_USER }}
           JF_URL: ${{ secrets.JF_URL }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-          JF_GIT_PROVIDER: github
-          JF_GIT_OWNER: ${{ github.repository_owner }}
-          JF_GIT_REPO: test-repo
-          JF_GIT_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          JF_GIT_BASE_BRANCH: ${{ github.base_ref}}
-          JF_GIT_PULL_REQUEST_ID: ${{ github.event.number }}
-        run: ./frogbot/frogbot scan-pull-request
+          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
