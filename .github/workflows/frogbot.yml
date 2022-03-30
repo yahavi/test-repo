@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: "16.x"
 
-      - uses: jfrog/frogbot@v1.0.0-alpha.2
+      - uses: jfrog/frogbot@v1.0.0-alpha.3
         env:
           JF_INSTALL_COMMAND: "npm i"
           JF_USER: ${{ secrets.JF_USER }}
