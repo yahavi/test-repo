@@ -1,7 +1,7 @@
 name: "Frogbot"
 on:
   pull_request_target:
-    types: [labeled, opened]
+    types: [synchronized, opened]
 jobs:
   scan-pr:
     runs-on: ubuntu-latest
@@ -23,12 +23,8 @@ jobs:
         run: |
           git clone https://github.com/yahavi/frogbot.git
           cd frogbot
-          git checkout usage-report
+          git checkout dev
           ./buildscripts/build.sh
-      - name: Git status
-        run: |
-          git status
-          git log --pretty=format:%s
 
       - name: Scan Pull Request
         env:
