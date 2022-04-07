@@ -1,7 +1,6 @@
 name: "Frogbot"
-on:
-  pull_request_target:
-    types: [labeled, opened]
+on: ["pull_request"]
+
 jobs:
   scan-pr:
     environment:
