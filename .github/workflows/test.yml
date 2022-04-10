@@ -13,4 +13,4 @@ jobs:
       - run: |
           jf npmc --repo-resolve=npm --server-id-resolve=ecosys
           jf npm i
-          jf bp
+          jf rt bp
