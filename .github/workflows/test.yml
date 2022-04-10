@@ -9,6 +9,6 @@ jobs:
         env:
           JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
       - run: |
-          jf npmc --repo-deploy=npm --repo-resolve=npm
+          jf npmc --repo-resolve=npm --server-id-resolve=ecosys
           jf npm i
           jf bp
