@@ -1,9 +1,20 @@
 name: "Test"
-
-on: ["pull_request"]
+on: [push, pull_request]
 
 jobs:
-  tests:
-    runs-on: 'ubuntu-latest'
+  test:
+    runs-on: ubuntu-latest
+    env: 
+      JFROG_CLI_BUILD_NAME: override-build-name
     steps:
-      - run: echo "running tests"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: jfrog/setup-jfrog-cli@v2
+        env:
+          JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
+        with:
+          download-repository: jfrog-cli-remot
+      - run: |
+          jf npmc --repo-resolve=npm --server-id-resolve=ecosys
+          jf npm i
+          jf rt bp
