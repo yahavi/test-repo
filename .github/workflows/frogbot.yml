@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: frogbot
-      url: https://github.com/jfrog/frogbot
+      url: \#
     steps:
       - uses: actions/checkout@v2
         with:
