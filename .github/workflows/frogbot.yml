@@ -1,7 +1,7 @@
 name: "Frogbot"
 on:
   pull_request_target:
-    types: [synchronized, opened]
+    types: [synchronize, opened]
 jobs:
   scan-pr:
     runs-on: ubuntu-latest
