@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: frogbot
-      url: https://github.com/jfrog/frogbot#frogbot
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,7 +25,7 @@ jobs:
         run: |
           git clone https://github.com/yahavi/frogbot.git
           cd frogbot
-          git checkout v2
+          git checkout github-export
           ./buildscripts/build.sh
 
       - name: Scan Pull Request
