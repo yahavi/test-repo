@@ -1,8 +1,0 @@
-pipelines:
-  - name: "my first pipeline"
-    steps:
-      - name: "My first step"
-        type: Bash
-        execution:
-          onExecute:
-            - echo "Hello"
