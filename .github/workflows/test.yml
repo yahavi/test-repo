@@ -7,14 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: yahavi/setup-jfrog-cli@fix-cleanup
-      env:
+      # env:
           # JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
         # JFrog platform url (for example: https://acme.jfrog.io) 
-        JF_URL: ${{ secrets.JF_URL }}
+        # JF_URL: ${{ secrets.JF_URL }}
         
         # Basic authentication credentials
-        JF_USER: ${{ secrets.JF_USER }}
-        JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+        # JF_USER: ${{ secrets.JF_USER }}
+        # JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
         # JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
       with:
         download-repository: jfrog-cli-remote
