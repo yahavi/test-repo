@@ -16,5 +16,7 @@ jobs:
         JF_USER: ${{ secrets.JF_USER }}
         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
         # JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+      with:
+        download-repository: jfrog-cli-remote
 
     - run: jf rt ping
