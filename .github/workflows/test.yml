@@ -6,11 +6,12 @@ jobs:
     steps:
     - uses: jfrog/setup-jfrog-cli@v3
       env:
-        # JFrog platform url (for example: https://acme.jfrog.io) 
-        JF_URL: ${{ secrets.JF_URL }}
+          JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
+        # # JFrog platform url (for example: https://acme.jfrog.io) 
+        # JF_URL: ${{ secrets.JF_URL }}
         
-        # Basic authentication credentials
-        JF_USER: ${{ secrets.JF_USER }}
-        JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+        # # Basic authentication credentials
+        # JF_USER: ${{ secrets.JF_USER }}
+        # JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
     - run: jf --version
