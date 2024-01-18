@@ -14,4 +14,4 @@ jobs:
         # JF_USER: ${{ secrets.JF_USER }}
         # JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
-    - run: jf --version
+    - run: jf rt ping
