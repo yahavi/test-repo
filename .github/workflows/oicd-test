@@ -1,4 +1,4 @@
-name: Action Test
+name: Action OICD Test
 on: workflow_dispatch
 permissions:
   id-token: write
