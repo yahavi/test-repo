@@ -9,5 +9,7 @@ jobs:
     - uses: yahavi/setup-jfrog-cli@fix-credentials
       env:
         JF_URL: ${{ secrets.JF_URL }}
+      with:
+        oidc-provider-name: yahav
 
     - run: jf rt ping
