@@ -12,4 +12,4 @@ jobs:
       with:
         oidc-provider-name: yahav
 
-    - run: jf rt ping
+    - run: jf rt s "artifactory-build-info/"
