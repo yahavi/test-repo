@@ -6,8 +6,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: yahavi/setup-jfrog-cli@fix-cleanup
-      # env:
+    - uses: yahavi/setup-jfrog-cli@improve-oidc
+    # env:
           # JF_ENV_1: ${{ secrets.JF_SECRET_ENV_1 }}
         # JFrog platform url (for example: https://acme.jfrog.io) 
         # JF_URL: ${{ secrets.JF_URL }}
