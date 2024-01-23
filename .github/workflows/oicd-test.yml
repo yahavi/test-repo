@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: yahavi/setup-jfrog-cli@improve-oidc
+    - uses: jfrog/setup-jfrog-cli@v3
       env:
         JF_URL: ${{ secrets.JF_URL }}
       with:
