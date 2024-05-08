@@ -15,3 +15,6 @@ jobs:
         oidc-audience: yahav-aud
 
     - run: jf docker pull ecosysjfrog.jfrog.io/docker-remote/netdata/netdata:v1.33.1
+      env:
+        JFROG_CLI_LOG_LEVEL: DEBUG
+
