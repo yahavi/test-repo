@@ -13,4 +13,4 @@ jobs:
         oidc-provider-name: yahav
         oidc-audience: yahav-aud
 
-    - run: jf rt s "artifactory-build-info/"
+    - run: jf docker pull ecosysjfrog.jfrog.io/docker-remote/netdata/netdata:v1.33.1
