@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: yahavi/setup-jfrog-cli@user-with-oidc
       env:
-        JF_USER: yahav
+        JF_USER: admin-group
         JF_URL: ${{ secrets.JF_URL }}
       with:
         oidc-provider-name: yahav
