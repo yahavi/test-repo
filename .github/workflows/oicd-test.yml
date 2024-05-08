@@ -6,12 +6,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: jfrog/setup-jfrog-cli@v4
+    - uses: yahavi/setup-jfrog-cli@user-with-oidc
       env:
+        JF_USER: yahav/test-repo
         JF_URL: ${{ secrets.JF_URL }}
       with:
         oidc-provider-name: yahav
-        oidc-audience: yahav-aud
 
     - run: jf docker pull ecosysjfrog.jfrog.io/docker-remote/netdata/netdata:v1.33.1
       env:
