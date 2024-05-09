@@ -6,12 +6,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: yahavi/setup-jfrog-cli@user-with-oidc
+    - uses: jfrog/setup-jfrog-cli@v3
       env:
         JF_URL: ${{ secrets.JF_URL }}
       with:
         oidc-provider-name: yahav
         oidc-audience: yahav-aud
+        version: 2.56.1
 
     - run: cat ~/.jfrog/jfrog-cli.conf.v6
     - run: jf c show
