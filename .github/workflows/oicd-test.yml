@@ -11,6 +11,7 @@ jobs:
         JF_URL: ${{ secrets.JF_URL }}
       with:
         oidc-provider-name: yahav
+        oidc-audience: yahav-aud
 
     - run: cat ~/.jfrog/jfrog-cli.conf.v6
     - run: jf c show
