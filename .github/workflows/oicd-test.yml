@@ -12,11 +12,10 @@ jobs:
       with:
         oidc-provider-name: yahav
         oidc-audience: yahav-aud
-        version: 2.56.1
-
+  
     - run: cat ~/.jfrog/jfrog-cli.conf.v6
-    - run: jf c show
-    - run: jf docker pull ecosysjfrog.jfrog.io/docker-remote/netdata/netdata:v1.33.1
+    - run: jf login ecosysjfrog.jfrog.io/docker-remote
+    - run: docker pull ecosysjfrog.jfrog.io/docker-remote/netdata/netdata:v1.33.1
       env:
         JFROG_CLI_LOG_LEVEL: DEBUG
 
