@@ -10,7 +10,11 @@ permissions:
   pull-requests: write
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, windows, macOS]
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
@@ -18,6 +22,7 @@ jobs:
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
+      if: runner.os == 'Linux'
       with:
         name: code-coverage
         path: coverage.txt
