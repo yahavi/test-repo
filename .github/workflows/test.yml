@@ -25,14 +25,14 @@ jobs:
         go-version: 1.22.x
         cache: false
         
-    - run: go test -v -race -coverprofile=coverage.txt ./...
+    - run: go test -v -race -coverprofile=coverage ./...
           
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
       if: runner.os == 'Linux'
       with:
         name: code-coverage
-        path: coverage.txt
+        path: coverage
         
   code_coverage:
     name: "Code coverage report"
