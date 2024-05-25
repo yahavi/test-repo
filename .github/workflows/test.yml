@@ -18,8 +18,15 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - run: go test -v -race -coverprofile=coverage.txt ./...
 
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.22.x
+        cache: false
+        
+    - run: go test -v -race -coverprofile=coverage.txt ./...
+          
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
       if: runner.os == 'Linux'
