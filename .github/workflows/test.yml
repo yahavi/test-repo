@@ -6,6 +6,8 @@ on:
   pull_request:
 env:
   ACTIONS_RUNNER_DEBUG: true
+permissions:
+  pull-requests: write
 jobs:
   test:
     runs-on: ubuntu-latest
