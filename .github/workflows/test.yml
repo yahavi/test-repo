@@ -17,10 +17,10 @@ jobs:
       run: |
         go install github.com/jandelgado/gcov2lcov@latest
         go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-        ~/go/bin/gcov2lcov -infile=cover.out -outfile=coverage.lcov
+        ~/go/bin/gcov2lcov -infile=cover.out -outfile=lcov.info
   
     
     - uses: kcjpop/coverage-comments@main
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        coverage-file: 'coverage.lcov'
+        coverage-file: 'lcov.info'
