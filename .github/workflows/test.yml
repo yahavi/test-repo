@@ -26,7 +26,7 @@ jobs:
     name: "Code coverage report"
     if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
     runs-on: ubuntu-latest
-    needs: unit_tests # Depends on the artifact uploaded by the "unit_tests" job
+    needs: test # Depends on the artifact uploaded by the "unit_tests" job
     steps:
       - uses: fgrosse/go-coverage-report@v1.0.1 # Consider using a Git revision for maximum security
         with:
