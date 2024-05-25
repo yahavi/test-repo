@@ -13,7 +13,7 @@ jobs:
     - name: Checkout Source
       uses: actions/checkout@v4
     - run: |
-        go get github.com/boumenot/gocover-cobertura
+        go install github.com/boumenot/gocover-cobertura
         go test -v -race -covermode atomic -coverprofile=coverage.txt ./...
         ~/go/bin/gocover-cobertura < coverage.txt > coverage.xml
 
