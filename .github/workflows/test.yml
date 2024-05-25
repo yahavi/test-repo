@@ -15,6 +15,7 @@ jobs:
 
     - name: generate test coverage
       run: |
+        go install github.com/jandelgado/gcov2lcov@latest
         go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
         gcov2lcov -infile=cover.out -outfile=coverage.lcov
   
