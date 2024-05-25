@@ -12,15 +12,24 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
+    - run: |
+        go install github.com/axw/gocov/gocov@latest
+        go install github.com/AlekSi/gocov-xml@latest
+    - run: ~/go/bin/gocov test ./... | ~/go/bin/gocov-xml > coverage.xml
 
-    - name: generate test coverage
-      run: |
-        go install github.com/jandelgado/gcov2lcov@latest
-        go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-        ~/go/bin/gcov2lcov -infile=cover.out -outfile=lcov.info
-  
-    
-    - uses: kcjpop/coverage-comments@main
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        coverage-file: 'lcov.info'
+        filename: coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        output: both
+        thresholds: '20 80'
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
