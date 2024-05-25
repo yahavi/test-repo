@@ -12,15 +12,14 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - name: generate test coverage
-      run: go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
-  
-    - name: check test coverage
-      uses: vladopajic/go-test-coverage@v2
-      with:
 
-        profile: cover.out
-        # local-prefix: github.com/org/project
-        threshold-file: 20
-        threshold-package: 20
-        threshold-total: 20
+    - name: generate test coverage
+      run: |
+        go test ./... -coverprofile=./cover.out -covermode=atomic -coverpkg=./...
+        gcov2lcov -infile=cover.out -outfile=coverage.lcov
+  
+    
+    - uses: kcjpop/coverage-comments@main
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        coverage-file: 'coverage.lcov'
