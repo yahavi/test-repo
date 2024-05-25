@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - '**'
-  pull_request:
+  # pull_request:
 env:
   ACTIONS_RUNNER_DEBUG: true
 jobs:
