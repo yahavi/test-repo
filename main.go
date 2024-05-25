@@ -13,3 +13,7 @@ func sayHello() {
 func sayHello2() {
 	fmt.Print("Hello world2")
 }
+
+func sayHello3() {
+	fmt.Print("Hello world3")
+}

@@ -10,25 +10,36 @@ permissions:
   pull-requests: write
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, windows, macOS]
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - run: go test -v -race -coverprofile=coverage.txt ./...
 
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.22.x
+        cache: false
+        
+    - run: go test -v -race -coverprofile=coverage ./...
+          
     - name: Archive code coverage results
       uses: actions/upload-artifact@v4
+      if: runner.os == 'Linux'
       with:
         name: code-coverage
-        path: coverage.txt
+        path: coverage
         
   code_coverage:
     name: "Code coverage report"
-    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    needs: test # Depends on the artifact uploaded by the "unit_tests" job
+    needs: test
     steps:
-      - uses: fgrosse/go-coverage-report@v1.0.1 # Consider using a Git revision for maximum security
+      - uses: fgrosse/go-coverage-report@v1.0.1
         with:
-          coverage-artifact-name: "code-coverage" # can be omitted if you used this default value
-          coverage-file-name: "coverage.txt" # can be omitted if you used this default value
+          coverage-file-name: coverage
