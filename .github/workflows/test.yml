@@ -3,36 +3,32 @@ on:
   push:
     branches:
       - '**'
-  # pull_request:
+  pull_request:
 env:
   ACTIONS_RUNNER_DEBUG: true
+permissions:
+  pull-requests: write
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - run: |
-        go install github.com/axw/gocov/gocov@latest
-        go install github.com/AlekSi/gocov-xml@latest
-    - run: ~/go/bin/gocov test ./... | ~/go/bin/gocov-xml > coverage.xml
+    - run: go test -v -race -covermode atomic -coverprofile=coverage.txt ./...
 
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v4
       with:
-        filename: coverage.xml
-        badge: true
-        fail_below_min: true
-        format: markdown
-        hide_branch_rate: false
-        hide_complexity: true
-        indicators: true
-        output: both
-        thresholds: '60 80'
-
-    - name: Add Coverage PR Comment
-      uses: marocchino/sticky-pull-request-comment@v2
-      if: github.event_name == 'pull_request'
-      with:
-        recreate: true
-        path: code-coverage-results.md
+        name: code-coverage
+        path: coverage.txt
+        
+  code_coverage:
+    name: "Code coverage report"
+    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
+    runs-on: ubuntu-latest
+    needs: test # Depends on the artifact uploaded by the "unit_tests" job
+    steps:
+      - uses: fgrosse/go-coverage-report@v1.0.1 # Consider using a Git revision for maximum security
+        with:
+          coverage-artifact-name: "code-coverage" # can be omitted if you used this default value
+          coverage-file-name: "coverage.txt" # can be omitted if you used this default value
