@@ -19,15 +19,13 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
         with:
           # OIDC provider name from the OIDC integration page in the JFrog Platform
-          oidc-provider-name: oidc-example-provider
+          oidc-provider-name: setup-jfrog-cli
 
       - name: Run JFrog CLI
         run: |
           # Ping the server
           jf rt ping
           # Collect environment variables for the build
-          jf rt bce
-          # Collect VCS details from git and add them to the build
-          jf rt bag
-          # Publish build info
-          jf rt bp
+          cd npm-example
+          jf npm-config --repo-resolve npm
+          jf npm i
