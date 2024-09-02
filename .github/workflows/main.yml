@@ -1,11 +1,9 @@
 on:
   push:
-    branches:
-    - main
-    - release/*
+  workflow_dispatch:
 jobs:
   my-job:
-    name: deploy to staging
+    name: test
     runs-on: ubuntu-22.04
     steps:
       - name: Run GitHub Script
