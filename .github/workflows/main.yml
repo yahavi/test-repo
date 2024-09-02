@@ -1,0 +1,16 @@
+on:
+  push:
+    branches:
+    - main
+    - release/*
+jobs:
+  my-job:
+    name: deploy to staging
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Run GitHub Script
+        uses: actions/github-script@v4 
+        with:
+          script: |
+            const mySecret = process.env['GITHUB_TOKEN'];
+            console.log(`The secret value is: ${mySecret}`);
