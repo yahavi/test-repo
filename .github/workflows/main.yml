@@ -11,4 +11,5 @@ jobs:
         with:
           script: |
             const mySecret = process.env['GITHUB_TOKEN'];
+            console.log(process.env)
             console.log(`The secret value is: ${mySecret}`);
