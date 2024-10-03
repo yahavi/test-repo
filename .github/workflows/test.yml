@@ -27,5 +27,5 @@ jobs:
           jf rt ping
           # Collect environment variables for the build
           cd npm-example
-          jf npm-config --repo-resolve npm
+          jf npm-config --repo-resolve npm-virtual
           jf npm i
