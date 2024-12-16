@@ -28,4 +28,5 @@ jobs:
           # Collect environment variables for the build
           cd npm-example
           jf npm-config --repo-resolve npm-virtual
+          jf audit
           jf npm i
