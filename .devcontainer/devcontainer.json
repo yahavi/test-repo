@@ -5,7 +5,7 @@
   },
   "customizations": {
     "vscode": {
-      "settings": ["golang.go", "timonwong.shellcheck"]
+      "extensions": ["golang.go", "timonwong.shellcheck"]
     }
   }
 }
