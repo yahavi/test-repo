@@ -2,5 +2,10 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers-extra/features/jfrog-cli-homebrew:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": ["golang.go", "timonwong.shellcheck"]
+    }
   }
 }
