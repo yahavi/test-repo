@@ -15,10 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup JFrog CLI
-        uses: yahavi/setup-jfrog-cli@build-name
+        uses: jfrog/setup-jfrog-cli@v4
         env:
-          # JFrog platform url (for example: https://acme.jfrog.io)
-          JF_URL: ${{ secrets.JF_URL }}
+          JF_URL: https://ecosysjfrog.jfrog.io
         with:
           # OIDC provider name from the OIDC integration page in the JFrog Platform
           oidc-provider-name: setup-jfrog-cli
